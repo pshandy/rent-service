@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1>Регистрация</h1>
+<div th:if="${message}" th:utext="${message}" class="alert alert-danger" role="alert">
+  This is a danger alert—check it out!
+</div>
+<form action="/user/registration" th:object="${user}" method="POST">
+  <div>
+    <label>Имя</label>
+    <input th:field="*{firstName}"/>
+    <p th:each="error: ${#fields.errors('firstName')}"
+       th:text="${error}">Ошибка валидации</p>
+  </div>
+  <div>
+    <label>Фамилия</label>
+    <input th:field="*{lastName}"/>
+    <p th:each="error : ${#fields.errors('lastName')}"
+       th:text="${error}">Ошибка валидации</p>
+  </div>
+  <div>
+    <label>Отчество</label>
+    <input th:field="*{middleName}"/>
+    <p th:each="error : ${#fields.errors('middleName')}"
+       th:text="${error}">Ошибка валидации</p>
+  </div>
+  <div>
+    <label>Почта</label>
+    <input type="email" th:field="*{email}"/>
+    <p th:each="error : ${#fields.errors('email')}"
+       th:text="${error}">Ошибка валидации</p>
+  </div>
+  <div>
+    <label>Пароль</label>
+    <input type="password" th:field="*{password}"/>
+    <p th:each="error : ${#fields.errors('password')}"
+       th:text="${error}">Ошибка валидации</p>
+  </div>
+  <div>
+    <label>Повторите пароль</label>
+    <input type="password" th:field="*{matchingPassword}"/>
+  </div>
+  <button type="submit">Зарегистрироваться</button>
+</form>
+</body>
+</html>
