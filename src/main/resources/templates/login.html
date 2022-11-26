@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/login}" method="post" class="login-form">
+    <input name="username" type="text">
+    <input name="password" type="password">
+    <button type="submit">Войти</button>
+</form>
+<div th:if="${param.error}">
+    Неверное имя пользователя или пароль.</div>
+<div th:if="${param.logout}">
+    Вы вышли из системы.</div>
+
+</body>
+</html>
