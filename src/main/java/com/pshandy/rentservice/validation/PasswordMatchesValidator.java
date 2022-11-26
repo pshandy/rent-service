@@ -1,9 +1,8 @@
 package com.pshandy.rentservice.validation;
 
 import com.pshandy.rentservice.web.dto.UserDto;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {

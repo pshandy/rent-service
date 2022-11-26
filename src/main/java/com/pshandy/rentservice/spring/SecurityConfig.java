@@ -16,12 +16,15 @@ public class SecurityConfig {
         http.csrf()
                 .disable();
 
+        http.formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/homepage");
+
         http.authorizeHttpRequests()
                 .requestMatchers("/login*", "/logout*", "/user/registration*")
                 .permitAll();
 
         return http.build();
-
     }
 
     @Bean

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Entity
@@ -12,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String firstName;
 
@@ -23,6 +24,15 @@ public class User {
     private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Contract> contracts;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Wish> wishes;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Wish> additionalContracts;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

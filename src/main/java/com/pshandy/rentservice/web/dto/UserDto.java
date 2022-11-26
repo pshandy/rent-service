@@ -3,33 +3,33 @@ package com.pshandy.rentservice.web.dto;
 import com.pshandy.rentservice.validation.EmailValid;
 import com.pshandy.rentservice.validation.PasswordMatches;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @PasswordMatches
 public class UserDto {
 
-    @NotBlank
+    @NotBlank(message = "Поле *Имя* не должно быть пустым")
     @NotNull
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Поле *Фамилия* не должно быть пустым")
     @NotNull
     private String lastName;
 
     private String middleName;
 
-    @NotBlank
+    @NotBlank(message = "Поле *Пароль* не должно быть пустым")
     @NotNull
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "Поле *Повторите пароль* не должно быть пустым")
     private String matchingPassword;
 
-    @NotBlank
+    @NotBlank(message = "Поле *Почта* не должно быть пустым")
     @NotNull
     @EmailValid
     private String email;

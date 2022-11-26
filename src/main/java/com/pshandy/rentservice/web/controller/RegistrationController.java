@@ -5,6 +5,7 @@ import com.pshandy.rentservice.service.UserService;
 import com.pshandy.rentservice.web.dto.UserDto;
 import com.pshandy.rentservice.web.error.UserAlreadyExistException;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
@@ -38,7 +38,9 @@ public class RegistrationController {
     public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid final UserDto userDto,
                                             BindingResult result) {
 
-        System.out.println(result);
+        if (result.hasErrors()) {
+            return new ModelAndView("registration", result.getModel());
+        }
 
         try {
             User registered = userService.registerNewUserAccount(userDto);
@@ -48,10 +50,11 @@ public class RegistrationController {
             return mav;
         } catch (RuntimeException ex) {
             ModelAndView mav = new ModelAndView("registration", "user", userDto);
-            mav.addObject("message", "Ошибка.");
+            mav.addObject("message", "Внутренняя ошибка сервера.");
             return mav;
         }
-        return new ModelAndView("registration");
+
+        return new ModelAndView("redirect:/homepage");
 
     }
 
