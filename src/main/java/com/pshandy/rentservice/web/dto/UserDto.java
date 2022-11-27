@@ -34,4 +34,8 @@ public class UserDto {
     @EmailValid
     private String email;
 
+    @NotBlank(message = "Поле *Номер телефона* не должно быть пустым")
+    @NotNull
+    private String phoneNumber;
+
 }

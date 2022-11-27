@@ -7,4 +7,8 @@ public interface IUserService {
 
     User registerNewUserAccount(UserDto accountDto);
 
+    User updateUserAccount(User user, UserDto accountDto);
+
+    UserDto getUserDto(User user);
+
 }

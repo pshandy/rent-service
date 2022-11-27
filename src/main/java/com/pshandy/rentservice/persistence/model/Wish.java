@@ -19,6 +19,8 @@ public class Wish {
 
     private Boolean isAdditionalServicesRequired;
 
+    private String description;
+
     @ManyToOne
     private User user;
 

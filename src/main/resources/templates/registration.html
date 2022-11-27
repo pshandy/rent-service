@@ -4,7 +4,7 @@
 <h1>Регистрация</h1>
 
 <div th:if="${message}" th:utext="${message}">
-  Не удалось войти
+  Не удалось зарегистрироваться
 </div>
 
 <form action="/user/registration" th:object="${user}" method="POST">
@@ -23,6 +23,10 @@
   <div>
     <label>Почта</label>
     <input type="email" th:field="*{email}"/>
+  </div>
+  <div>
+    <label>Номер телефона</label>
+    <input th:field="*{phoneNumber}"/>
   </div>
   <div>
     <label>Пароль</label>
