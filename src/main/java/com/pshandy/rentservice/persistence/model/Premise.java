@@ -20,9 +20,9 @@ public class Premise {
 
     private String zone;
 
-    private boolean isOccupied;
+    private Boolean isOccupied;
 
-    private boolean internetPresent;
+    private Boolean internetPresent;
 
     @OneToMany(mappedBy = "premise")
     private Set<Room> rooms;

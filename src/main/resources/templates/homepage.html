@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Главная</title>
+    <meta charset="utf-8">
+    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
 </head>
 <body>
+
+    <div th:insert="fragments/navbar :: navbar"> </div>
 
 </body>
 </html>

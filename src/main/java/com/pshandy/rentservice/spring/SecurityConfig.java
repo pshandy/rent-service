@@ -22,12 +22,13 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .requestMatchers("/user/wish*", "/moderator/wish*", "/moderator/wish/*", "/user/profile*").hasRole("USER")
-                .requestMatchers("/login*", "/logout*", "/user/registration*")
+                .requestMatchers(
+                        "/login*",
+                        "/logout*",
+                        "/user/registration*",
+                        "/homepage",
+                        "/**")
                 .permitAll();
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/user/wish*").hasRole("USER")
-//                .requestMatchers("/login*", "/logout*", "/user/registration*")
-//                .permitAll();
 
         return http.build();
     }

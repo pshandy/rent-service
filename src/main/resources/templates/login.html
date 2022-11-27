@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Авторизация</title>
+    <meta charset="utf-8">
+    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
 </head>
-<body>
+<body class="app app-login p-0">
+<div class="row justify-content-center">
+    <a class = "d-flex justify-content-center" href="/homepage">
+        <svg  href="account.html" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house mt-3" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+        </svg>
+    </a>
+    <div class="col-md-6 col-lg-4">
+        <div class="d-flex flex-column align-content-end">
+            <div class="app-auth-body mx-auto">
+                <h2 class="auth-heading text-center mb-4">Авторизация на сайте</h2>
+                <div class="alert alert-danger" th:if="${param.error}">
+                    Неверное имя пользователя или пароль.</div>
+                <div class="alert alert-danger" th:if="${param.logout}">
+                    Вы вышли из системы.</div>
+                <div class="auth-form-container text-start mx-auto">
+                    <form th:action="@{/login}" method="POST">
 
-<form th:action="@{/login}" method="post" class="login-form">
-    <input name="username" type="text">
-    <input name="password" type="password">
-    <button type="submit">Войти</button>
-</form>
-<div th:if="${param.error}">
-    Неверное имя пользователя или пароль.</div>
-<div th:if="${param.logout}">
-    Вы вышли из системы.</div>
+                        <div class="email mb-3">
+                            <input name="username" class="form-control" placeholder="Почта" required="required">
+                        </div>
 
+                        <div class="password mb-3">
+                            <input type="password" name="password" class="form-control" placeholder="Пароль" required="password">
+                        </div>
+                        <div class="text-center">
+                            <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Войти</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="auth-option text-center pt-2">Нет аккаунта? Зарегистрируйтесь <a class="text-link" href="/user/registration" >здесь</a>.</div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+

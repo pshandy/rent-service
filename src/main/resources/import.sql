@@ -15,6 +15,6 @@ INSERT INTO Premise(Id,price,area,zone,is_occupied,internet_present) Values(10,2
 INSERT INTO Premise(Id,price,area,zone,is_occupied,internet_present) Values(11,15000,350,'Фудкорд',false,true);
 INSERT INTO Premise(Id,price,area,zone,is_occupied,internet_present) Values(12,10000,200,'Фудкорд',false,true);
 
-INSERT INTO wish VALUES (1, '1', '1', true, 1, 1, 1);
-INSERT INTO wish VALUES (2, '2', '2', true, 2, 2, 1);
-INSERT INTO wish VALUES (3, '3', '3', true, 3, 3, 1);
+INSERT INTO wish (description, desired_period, is_additional_services_required, lower_budget_limit, upper_budget_limit, user_id) VALUES ('desc', 12, true, 1, 3, 1);
+INSERT INTO wish (description, desired_period, is_additional_services_required, lower_budget_limit, upper_budget_limit, user_id) VALUES ('desc', 6, true, 2, 6, 1);
+INSERT INTO wish (description, desired_period, is_additional_services_required, lower_budget_limit, upper_budget_limit, user_id) VALUES ('desc', 7, true, 3, 11, 1);
