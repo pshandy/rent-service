@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Пользователи</title>
+  <meta charset="UTF-8">
+  <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+  <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+</head>
+<body class="app">
+
+<div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+<div class="app-wrapper">
+
+  <div class="card mb-4">
+
+    <form action="/admin/user" th:object="${user}" method="POST">
+      <table class="table app-table-hover text-center">
+        <thead>
+        <tr>
+          <th>Фамилия</th>
+          <th>Имя</th>
+          <th>Отчество</th>
+          <th>Почта</th>
+          <th>Номер</th>
+          <th>Пароль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td><input th:field="*{firstName}" class="form-control" placeholder="Фамилия" required="required"></td>
+        <td><input th:field="*{lastName}" class="form-control" placeholder="Имя" required="required"></td>
+        <td><input th:field="*{middleName}" class="form-control" placeholder="Отчество" required="required"></td>
+        <td><input th:field="*{email}" class="form-control" placeholder="Почта" required="required"></td>
+        <td><input th:field="*{phoneNumber}" class="form-control" placeholder="Номер" required="required"></td>
+        <td><input th:field="*{password}" class="form-control" placeholder="Пароль" required="required"></td>
+        </tbody>
+      </table>
+      <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Добавить</button>
+    </form>
+
+    <div class="alert alert-danger mt-3 text-center" th:if="${message}" th:utext="${message}">
+      Не удалось добавить
+    </div>
+
+    <div class="alert alert-success mt-3 text-center" th:if="${smessage}" th:utext="${smessage}">
+      Удалось добавить
+    </div>
+
+    <div th:if="${edit}">
+      <form action="/admin/user" th:object="${edit}" th:method="PATCH">
+        <input type="hidden" th:field="*{id}" th:value="${edit.id}">
+        <table class="table app-table-hover text-center">
+          <thead>
+          <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Почта</th>
+            <th>Номер</th>
+            <th>Пароль</th>
+          </tr>
+          </thead>
+          <tbody>
+          <td><input th:field="*{firstName}" class="form-control" placeholder="Фамилия" required="required"></td>
+          <td><input th:field="*{lastName}" class="form-control" placeholder="Имя" required="required"></td>
+          <td><input th:field="*{middleName}" class="form-control" placeholder="Отчество" required="required"></td>
+          <td><input th:field="*{email}" class="form-control" placeholder="Почта" required="required"></td>
+          <td><input th:field="*{phoneNumber}" class="form-control" placeholder="Номер" required="required"></td>
+          <td><input th:field="*{password}" class="form-control" placeholder="Пароль" required="required"></td>
+          </tbody>
+        </table>
+        <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
+      </form>
+    </div>
+
+    <table class="table app-table-hover text-center">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Почта</th>
+        <th>Номер</th>
+        <th>Пароль</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item : ${users}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.firstName}">Фамилия</td>
+        <td th:text="${item.lastName}">Имя</td>
+        <td th:text="${item.middleName}">Отчество</td>
+        <td th:text="${item.email}">почта</td>
+        <td th:text="${item.phoneNumber}">+799999999</td>
+        <td th:text="${item.password}">123</td>
+        <td class="d-flex justify-content-center">
+          <form th:action="'/admin/user/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
+          <form th:action="'/admin/user/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+</body>
+</html>

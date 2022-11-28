@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Пожелания</title>
+    <meta charset="UTF-8">
+    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+</head>
+<body class="app">
+
+<div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+<div class="app-wrapper">
+
+    <div class="card mb-4">
+
+        <form action="/admin/wish" th:object="${wish}" method="POST">
+        <table class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th>Желаемый период</th>
+                <th>Верхняя граница бюджета</th>
+                <th>Нижняя граница бюджета</th>
+                <th>Доп. услуги</th>
+                <th>ID юзера</th>
+                <th>Примечание</th>
+            </tr>
+            </thead>
+            <tbody>
+            <td><input th:field="*{desiredPeriod}" class="form-control" type="number" placeholder="Желаемый период" required="required"></td>
+            <td><input th:field="*{upperBudgetLimit}" class="form-control" type="number" placeholder="Верхняя граница бюджета" required="required"></td>
+            <td><input th:field="*{lowerBudgetLimit}" class="form-control" type="number" placeholder="Нижняя граница бюджета" required="required"></td>
+            <td><select th:field="*{isAdditionalServicesRequired}" class="form-select">
+                <option value="1">Да</option>
+                <option value="0">Нет</option>
+            </select>
+            </td>
+            <td><input th:field="*{user.id}" class="form-control" type="number" placeholder="ID пользователя" required="required"></td>
+            <td><input th:field="*{description}" class="form-control" placeholder="Примечание" required="required"></td>
+            </tbody>
+        </table>
+        <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Добавить</button>
+        </form>
+
+        <div class="alert alert-danger mt-3 text-center" th:if="${message}" th:utext="${message}">
+            Не удалось добавить
+        </div>
+
+        <div class="alert alert-success mt-3 text-center" th:if="${smessage}" th:utext="${smessage}">
+            Удалось добавить
+        </div>
+
+
+        <div th:if="${edit}">
+            <form action="/admin/wish" th:object="${edit}" th:method="PATCH">
+                <input type="hidden" th:field="*{id}" th:value="${edit.id}">
+                <table class="table app-table-hover text-center">
+                    <thead>
+                    <tr>
+                        <th>Желаемый период</th>
+                        <th>Верхняя граница бюджета</th>
+                        <th>Нижняя граница бюджета</th>
+                        <th>Доп. услуги</th>
+                        <th>ID юзера</th>
+                        <th>Примечание</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td><input th:field="*{desiredPeriod}" class="form-control" type="number" placeholder="Желаемый период" required="required"></td>
+                    <td><input th:field="*{upperBudgetLimit}" class="form-control" type="number" placeholder="Верхняя граница бюджета" required="required"></td>
+                    <td><input th:field="*{lowerBudgetLimit}" class="form-control" type="number" placeholder="Нижняя граница бюджета" required="required"></td>
+                    <td><select th:field="*{isAdditionalServicesRequired}" class="form-select">
+                        <option value="1">Да</option>
+                        <option value="0">Нет</option>
+                    </select>
+                    </td>
+                    <td><input th:field="*{user.id}" class="form-control" type="number" placeholder="ID пользователя" required="required"></td>
+                    <td><input th:field="*{description}" class="form-control" placeholder="Примечание" required="required"></td>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <table class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Желаемый период</th>
+                <th>Верхняя граница бюджета</th>
+                <th>Нижняя граница бюджета</th>
+                <th>Доп. услуги</th>
+                <th>Примечание</th>
+                <th>Id юзера</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${wishes}">
+                <td th:text="${item.id}">1</td>
+                <td th:text="${item.desiredPeriod}">10</td>
+                <td th:text="${item.upperBudgetLimit}">100</td>
+                <td th:text="${item.lowerBudgetLimit}">10</td>
+                <td th:text="${item.isAdditionalServicesRequired} ? 'Да' : 'Нет'">Да</td>
+                <td th:text="${item.description}">Примета</td>
+                <td th:text="${item.user.id}">1</td>
+                <td class="d-flex justify-content-center">
+                    <form th:action="'/admin/wish/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
+                    <form th:action="'/admin/wish/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

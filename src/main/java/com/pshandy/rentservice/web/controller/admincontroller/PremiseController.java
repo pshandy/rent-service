@@ -21,10 +21,10 @@ public class PremiseController {
     }
 
     @GetMapping("/admin/premise")
-    public String showProfile(Model model) {
+    public String showPremise(Model model) {
         model.addAttribute("premise", new Premise());
         model.addAttribute("premises", premiseRepository.findAll());
-        return "/tables/premise";
+        return "/admin/premise";
     }
 
     @PostMapping("/admin/premise")
@@ -36,8 +36,9 @@ public class PremiseController {
         try {
             premiseRepository.save(premise);
         } catch (RuntimeException ex) {
-            ModelAndView mav = new ModelAndView("/tables/premise");
+            ModelAndView mav = new ModelAndView("/admin/premise");
             mav.addObject("message", "Не удалось добавить запись");
+            mav.addObject("premise", premise);
             mav.addObject("premises", premiseRepository.findAll());
             return mav;
         }
@@ -46,17 +47,41 @@ public class PremiseController {
     }
 
     @DeleteMapping(path = "/admin/premise/{id}")
-    public ModelAndView deleteCourseCategory(RedirectAttributes redirectAttributes,
+    public ModelAndView deletePremise(RedirectAttributes redirectAttributes,
                                              @PathVariable("id") Integer id) {
         try {
             premiseRepository.delete(premiseRepository.findById(id).get());
         } catch (RuntimeException ex) {
-            ModelAndView mav = new ModelAndView("/tables/premise");
-            mav.addObject("message", "Не удалось добавить запись");
-            mav.addObject("premises", premiseRepository.findAll());
-            return mav;
+            redirectAttributes.addFlashAttribute("message", "Не удалось удалить запись");
+            return new ModelAndView("redirect:/admin/premise");
         }
         redirectAttributes.addFlashAttribute("smessage", "Удалено");
+        return new ModelAndView("redirect:/admin/premise");
+    }
+
+    @GetMapping("/admin/premise/{id}")
+    public ModelAndView showEditPremise(RedirectAttributes redirectAttributes,
+                                         @PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView("/admin/premise");
+        mav.addObject("edit", premiseRepository.findById(id).get());
+        mav.addObject("premise", new Premise());
+        mav.addObject("premises", premiseRepository.findAll());
+        return mav;
+    }
+
+    @PatchMapping("/admin/premise")
+    public ModelAndView updatePremiseForm(
+            RedirectAttributes redirectAttributes,
+            @ModelAttribute("edit") @Valid final Premise premise,
+            BindingResult result
+    ) {
+        try {
+            premiseRepository.save(premise);
+        } catch (RuntimeException ex) {
+            redirectAttributes.addFlashAttribute("message", "Не удалось обновить запись");
+            return new ModelAndView("redirect:/admin/premise");
+        }
+        redirectAttributes.addFlashAttribute("smessage", "Обновлено");
         return new ModelAndView("redirect:/admin/premise");
     }
 

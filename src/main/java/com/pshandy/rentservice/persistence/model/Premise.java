@@ -2,6 +2,8 @@ package com.pshandy.rentservice.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Set;
 
@@ -24,9 +26,11 @@ public class Premise {
 
     private Boolean internetPresent;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "premise")
     private Set<Room> rooms;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "premise")
     private Set<Contract> contracts;
 

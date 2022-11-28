@@ -7,9 +7,64 @@
     <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
     <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
 </head>
-<body>
+<body class="app">
 
-    <div th:insert="fragments/navbar :: navbar"> </div>
+    <div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+    <div class="app-wrapper mt-4">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="d-flex flex-column align-content-end">
+                    <div class="app-auth-body">
+                        <div class="auth-form-container text-start mx-auto">
+                            <form action="/homepage" th:object="${searchDto}" method="POST">
+
+                                <div class="email mb-3">
+                                    <h2 class="text-center">Фильтр</h2>
+                                </div>
+
+                                <div class="email mb-3">
+                                    <input th:field="*{lowerSquare}" type="number" class="form-control" placeholder="Площадь минимум" required="required">
+                                </div>
+
+                                <div class="email mb-3">
+                                    <input th:field="*{upperSquare}" type="number" class="form-control" placeholder="Площадь максимум" required="required">
+                                </div>
+
+                                <div class="email mb-3">
+                                    <input th:field="*{lowerBudgetLimit}" type="number" class="form-control" placeholder="Нижняя граница бюджета" required="required">
+                                </div>
+
+                                <div class="email mb-3">
+                                    <input th:field="*{upperBudgetLimit}" type="number" class="form-control" placeholder="Верхняя граница бюджета" required="required">
+                                </div>
+
+                                <select required th:field="*{zone}" class="form-select mb-3">
+                                    <option value="" selected>Зона</option>
+                                    <option value="1">Фудкорд</option>
+                                    <option value="2">Склад</option>
+                                    <option value="3">Остров</option>
+                                </select>
+
+                                <select required th:field="*{internetPresent}" class="form-select mb-3">
+                                    <option value="" selected>Нужен интернет?</option>
+                                    <option value="1">Да</option>
+                                    <option value="0">Нет</option>
+                                </select>
+
+                                <div class="text-center">
+                                    <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Найти</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 </html>

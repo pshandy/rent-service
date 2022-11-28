@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Комнаты</title>
+    <meta charset="UTF-8">
+    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+</head>
+<body class="app">
+
+<div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+<div class="app-wrapper">
+
+    <div class="card mb-4">
+
+        <form action="/admin/room" th:object="${room}" method="POST">
+        <table class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th>Id Помещения</th>
+                <th>Тип помещения</th>
+                <th>Номер</th>
+                <th>Этаж</th>
+                <th>Место для разгрузки</th>
+                <th>Служебный выход</th>
+                <th>Служебное помещение</th>
+                <th>Количество розеток</th>
+            </tr>
+            </thead>
+            <tbody>
+            <td><input th:field="*{premise.id}" class="form-control" placeholder="ID Помещения" required="required"></td>
+            <td>
+                <select th:field="*{roomType}" class="form-select">
+                    <option value="1">Прилавок</option>
+                    <option value="2">Склад</option>
+                    <option value="3">Зал</option>
+                </select>
+            </td>
+            <td><input th:field="*{number}" class="form-control" placeholder="Номер" required="required"></td>
+            <td><input th:field="*{floorNumber}" class="form-control" placeholder="Этаж" required="required"></td>
+            <td><select th:field="*{unloadingPresent}" class="form-select">
+                <option value="1">Есть</option>
+                <option value="0">Нет</option>
+            </select></td>
+            <td><select th:field="*{serviceExitPresent}" class="form-select">
+                <option value="1">Есть</option>
+                <option value="0">Нет</option>
+            </select></td>
+            <td><select th:field="*{serviceRoomPresent}" class="form-select">
+                <option value="1">Есть</option>
+                <option value="0">Нет</option>
+            </select></td>
+
+            <td><input th:field="*{numberOfOutlets}" class="form-control" placeholder="Количество розеток" type="number" required="required"></td>
+            </tbody>
+        </table>
+        <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Добавить</button>
+        </form>
+
+        <div class="alert alert-danger mt-3 text-center" th:if="${message}" th:utext="${message}">
+            Не удалось добавить
+        </div>
+
+        <div class="alert alert-success mt-3 text-center" th:if="${smessage}" th:utext="${smessage}">
+            Удалось добавить
+        </div>
+
+        <div th:if="${edit}">
+            <form action="/admin/room" th:object="${edit}" th:method="PATCH">
+                <input type="hidden" th:field="*{id}" th:value="${edit.id}">
+                <table class="table app-table-hover text-center">
+                    <thead>
+                    <tr>
+                        <th>Id Помещения</th>
+                        <th>Тип помещения</th>
+                        <th>Номер</th>
+                        <th>Этаж</th>
+                        <th>Место для разгрузки</th>
+                        <th>Служебный выход</th>
+                        <th>Служебное помещение</th>
+                        <th>Количество розеток</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td><input th:field="*{premise.id}" class="form-control" placeholder="ID Помещения" required="required"></td>
+                    <td>
+                        <select th:field="*{roomType}" class="form-select">
+                            <option value="1">Прилавок</option>
+                            <option value="2">Склад</option>
+                            <option value="3">Зал</option>
+                        </select>
+                    </td>
+                    <td><input th:field="*{number}" class="form-control" placeholder="Номер" required="required"></td>
+                    <td><input th:field="*{floorNumber}" class="form-control" placeholder="Этаж" required="required"></td>
+                    <td><select th:field="*{unloadingPresent}" class="form-select">
+                        <option value="1">Есть</option>
+                        <option value="0">Нет</option>
+                    </select></td>
+                    <td><select th:field="*{serviceExitPresent}" class="form-select">
+                        <option value="1">Есть</option>
+                        <option value="0">Нет</option>
+                    </select></td>
+                    <td><select th:field="*{serviceRoomPresent}" class="form-select">
+                        <option value="1">Есть</option>
+                        <option value="0">Нет</option>
+                    </select></td>
+                    <td><input th:field="*{numberOfOutlets}" class="form-control" placeholder="Количество розеток" type="number" required="required"></td>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <table class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th>Id Помещения</th>
+                <th>Тип помещения</th>
+                <th>Номер</th>
+                <th>Этаж</th>
+                <th>Место для разгрузки</th>
+                <th>Служебный выход</th>
+                <th>Служебное помещение</th>
+                <th>Количество розеток</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${rooms}">
+                <td th:text="${item.id}">1</td>
+                <td th:text="${item.roomType}">Склад</td>
+                <td th:text="${item.number}">1</td>
+                <td th:text="${item.floorNumber}">1</td>
+                <td th:text="${item.unloadingPresent} ? 'Есть' : 'Нет'">Есть</td>
+                <td th:text="${item.serviceExitPresent} ? 'Есть' : 'Нет'">Есть</td>
+                <td th:text="${item.serviceRoomPresent} ? 'Есть' : 'Нет'">Есть</td>
+                <td th:text="${item.numberOfOutlets}">5</td>
+                <td class="d-flex justify-content-center">
+                    <form th:action="'/admin/room/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
+                    <form th:action="'/admin/room/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

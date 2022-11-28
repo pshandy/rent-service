@@ -22,14 +22,14 @@ public class AdditionalContractController {
     }
 
     @GetMapping("/admin/additionalContract")
-    public String showProfile(Model model) {
+    public String showAdditionalContract(Model model) {
         model.addAttribute("additionalContract", new AdditionalContract());
         model.addAttribute("additionalContracts", additionalContractRepository.findAll());
-        return "/tables/additionalContract";
+        return "/admin/additionalContract";
     }
 
     @PostMapping("/admin/additionalContract")
-    public ModelAndView saveWishForm(
+    public ModelAndView saveAdditionalContract(
             RedirectAttributes redirectAttributes,
             @ModelAttribute("additionalContract") @Valid final AdditionalContract additionalContract,
             BindingResult result
@@ -37,9 +37,10 @@ public class AdditionalContractController {
         try {
             additionalContractRepository.save(additionalContract);
         } catch (RuntimeException ex) {
-            ModelAndView mav = new ModelAndView("/tables/additionalContract");
+            ModelAndView mav = new ModelAndView("/admin/additionalContract");
             mav.addObject("message", "Не удалось добавить запись");
-            mav.addObject("wishes", additionalContractRepository.findAll());
+            mav.addObject("additionalContract", additionalContract);
+            mav.addObject("additionalContracts", additionalContractRepository.findAll());
             return mav;
         }
         redirectAttributes.addFlashAttribute("smessage", "Добавлено");
@@ -47,18 +48,44 @@ public class AdditionalContractController {
     }
 
     @DeleteMapping(path = "/admin/additionalContract/{id}")
-    public ModelAndView deleteCourseCategory(RedirectAttributes redirectAttributes,
+    public ModelAndView deleteAdditionalContract(RedirectAttributes redirectAttributes,
                                              @PathVariable("id") Integer id) {
         try {
             additionalContractRepository.delete(additionalContractRepository.findById(id).get());
         } catch (RuntimeException ex) {
-            ModelAndView mav = new ModelAndView("wishEdit");
-            mav.addObject("message", "Внутренняя ошибка сервера");
-            return mav;
+            redirectAttributes.addFlashAttribute("message", "Не удалось удалить запись");
+            return new ModelAndView("redirect:/admin/additionalContract");
         }
         redirectAttributes.addFlashAttribute("smessage", "Удалено");
         return new ModelAndView("redirect:/admin/additionalContract");
     }
+
+    @GetMapping("/admin/additionalContract/{id}")
+    public ModelAndView showEditAdditionalContract(RedirectAttributes redirectAttributes,
+                                        @PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView("/admin/additionalContract");
+        mav.addObject("edit", additionalContractRepository.findById(id).get());
+        mav.addObject("additionalContract", new AdditionalContract());
+        mav.addObject("additionalContracts", additionalContractRepository.findAll());
+        return mav;
+    }
+
+    @PatchMapping("/admin/additionalContract")
+    public ModelAndView updateAdditionalContractForm(
+            RedirectAttributes redirectAttributes,
+            @ModelAttribute("edit") @Valid final AdditionalContract additionalContract,
+            BindingResult result
+    ) {
+        try {
+            additionalContractRepository.save(additionalContract);
+        } catch (RuntimeException ex) {
+            redirectAttributes.addFlashAttribute("message", "Не удалось обновить запись");
+            return new ModelAndView("redirect:/admin/additionalContract");
+        }
+        redirectAttributes.addFlashAttribute("smessage", "Обновлено");
+        return new ModelAndView("redirect:/admin/additionalContract");
+    }
+
 
 
 }
