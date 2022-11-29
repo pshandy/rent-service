@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>navbar</title>
-    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
-    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
 </head>
 <body>
 
@@ -173,6 +171,18 @@
     <script th:src="@{/assets/js/app.js}"></script>
 
 </header>
+
+<div th:fragment="head">
+    <meta charset="UTF-8">
+    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
+    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+</div>
+
+<div th:fragment="footer">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/datatables.js}"></script>
+</div>
 
 </body>
 </html>

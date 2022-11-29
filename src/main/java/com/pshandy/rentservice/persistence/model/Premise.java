@@ -26,6 +26,8 @@ public class Premise {
 
     private Boolean internetPresent;
 
+    private String description;
+
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "premise")
     private Set<Room> rooms;

@@ -24,6 +24,7 @@
                     <th>Площадь</th>
                     <th>Зона</th>
                     <th>Интернет</th>
+                    <th>Описание</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,9 @@
                         <option value="1">Есть</option>
                         <option value="0">Отсутствует</option>
                     </select>
+                </td>
+                <td>
+                    <textarea placeholder="Описание" class="form-control" rows="3" th:field="*{description}"></textarea>
                 </td>
                 </tbody>
             </table>
@@ -72,6 +76,7 @@
                         <th>Площадь</th>
                         <th>Зона</th>
                         <th>Интернет</th>
+                        <th>Описание</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -96,6 +101,9 @@
                             <option value="0">Отсутствует</option>
                         </select>
                     </td>
+                    <td>
+                        <textarea placeholder="Опишите свои пожелания" class="form-control" rows="3" th:field="*{description}"></textarea>
+                    </td>
                     </tbody>
                 </table>
                 <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
@@ -111,6 +119,7 @@
                 <th>Площадь</th>
                 <th>Зона</th>
                 <th>Интернет</th>
+                <th>Описание</th>
                 <th>Действия</th>
             </tr>
             </thead>
@@ -122,6 +131,7 @@
                 <td th:text="${item.area}">250</td>
                 <td th:text="${item.zone}">Фудкорд</td>
                 <td th:text="${item.internetPresent} ? 'Есть' : 'Отсутствует'">есть</td>
+                <td th:text="${item.description}">Фудкорд</td>
                 <td class="d-flex justify-content-center">
                     <form th:action="'/admin/premise/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
                     <form th:action="'/admin/premise/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>

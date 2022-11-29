@@ -20,23 +20,23 @@
                         <div class="auth-form-container text-start mx-auto">
                             <form action="/homepage" th:object="${searchDto}" method="POST">
 
-                                <div class="email mb-3">
+                                <div class="mb-3">
                                     <h2 class="text-center">Фильтр</h2>
                                 </div>
 
-                                <div class="email mb-3">
+                                <div class="mb-3">
                                     <input th:field="*{lowerSquare}" type="number" class="form-control" placeholder="Площадь минимум" required="required">
                                 </div>
 
-                                <div class="email mb-3">
+                                <div class="mb-3">
                                     <input th:field="*{upperSquare}" type="number" class="form-control" placeholder="Площадь максимум" required="required">
                                 </div>
 
-                                <div class="email mb-3">
+                                <div class="mb-3">
                                     <input th:field="*{lowerBudgetLimit}" type="number" class="form-control" placeholder="Нижняя граница бюджета" required="required">
                                 </div>
 
-                                <div class="email mb-3">
+                                <div class="mb-3">
                                     <input th:field="*{upperBudgetLimit}" type="number" class="form-control" placeholder="Верхняя граница бюджета" required="required">
                                 </div>
 
@@ -56,6 +56,8 @@
                                 <div class="text-center">
                                     <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Найти</button>
                                 </div>
+
+                                <div class="auth-option text-center pb-4">Нет нашли что искали? Вы можете оставить свои пожелания <a class="text-link" href="/user/wish" >здесь</a>.</div>
 
                             </form>
                         </div>

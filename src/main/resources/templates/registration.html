@@ -17,36 +17,36 @@
     <div class="d-flex flex-column align-content-end">
       <div class="app-auth-body mx-auto">
         <h2 class="auth-heading text-center mb-4">Регистрация на сайте</h2>
-        <div class="alert alert-danger" th:if="${message}" th:utext="${message}">
+        <div class="alert alert-danger  text-center" th:if="${message}" th:utext="${message}">
           Не удалось войти
         </div>
         <div class="auth-form-container text-start mx-auto">
           <form action="/user/registration" th:object="${user}" method="POST">
-            <div class="email mb-3">
+            <div class="mb-3">
               <input th:field="*{firstName}" class="form-control" placeholder="Имя" required="required">
             </div>
 
-            <div class="email mb-3">
+            <div class="mb-3">
               <input th:field="*{lastName}" class="form-control" placeholder="Фамилия" required="required">
             </div>
 
-            <div class="email mb-3">
+            <div class="mb-3">
               <input th:field="*{middleName}" class="form-control" placeholder="Отчество" required="required">
             </div>
 
-            <div class="email mb-3">
+            <div class="mb-3">
               <input th:field="*{email}" class="form-control" placeholder="Почта" required="required">
             </div>
 
-            <div class="email mb-3">
+            <div class="mb-3">
               <input th:field="*{phoneNumber}" class="form-control" placeholder="Телефон" required="required">
             </div>
 
-            <div class="password mb-3">
+            <div class="mb-3">
               <input type="password" th:field="*{password}" class="form-control" placeholder="Пароль" required="password">
             </div>
 
-            <div class="password mb-3">
+            <div class="mb-3">
               <input type="password" th:field="*{matchingPassword}" class="form-control" placeholder="Повторите пароль" required="required">
             </div>
             <div th:if="${#fields.hasAnyErrors()}">

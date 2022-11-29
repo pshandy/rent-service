@@ -17,18 +17,18 @@
         <div class="d-flex flex-column align-content-end">
             <div class="app-auth-body mx-auto">
                 <h2 class="auth-heading text-center mb-4">Авторизация на сайте</h2>
-                <div class="alert alert-danger" th:if="${param.error}">
+                <div class="alert alert-danger  text-center" th:if="${param.error}">
                     Неверное имя пользователя или пароль.</div>
-                <div class="alert alert-danger" th:if="${param.logout}">
+                <div class="alert alert-danger  text-center" th:if="${param.logout}">
                     Вы вышли из системы.</div>
                 <div class="auth-form-container text-start mx-auto">
                     <form th:action="@{/login}" method="POST">
 
-                        <div class="email mb-3">
+                        <div class="mb-3">
                             <input name="username" class="form-control" placeholder="Почта" required="required">
                         </div>
 
-                        <div class="password mb-3">
+                        <div class="mb-3">
                             <input type="password" name="password" class="form-control" placeholder="Пароль" required="password">
                         </div>
                         <div class="text-center">

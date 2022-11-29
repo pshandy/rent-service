@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Договор</title>
-    <meta charset="UTF-8">
-    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
-    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+    <div th:insert="~{fragments/navbar :: head}"></div>
 </head>
 <body class="app">
 
@@ -23,6 +21,7 @@
                 <th>Скидка</th>
                 <th>Начало</th>
                 <th>Конец</th>
+                <th>Активный</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +30,12 @@
             <td><input th:field="*{discount}" type="number" class="form-control" placeholder="Скидка" required="required"></td>
             <td><input th:field="*{startDate}" type="date" class="form-control" placeholder="Начало" required="required"></td>
             <td><input th:field="*{endDate}" type="date" class="form-control" placeholder="Конец" required="required"></td>
+            <td>
+                <select th:field="*{isActive}" class="form-select">
+                    <option value="1">Да</option>
+                    <option value="0">Нет</option>
+                </select>
+            </td>
             </tbody>
         </table>
         <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Добавить</button>
@@ -55,6 +60,7 @@
                     <th>Скидка</th>
                     <th>Начало</th>
                     <th>Конец</th>
+                    <th>Активный</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,13 +69,19 @@
                 <td><input th:field="*{discount}" type="number" class="form-control" placeholder="Скидка" required="required"></td>
                 <td><input th:field="*{startDate}" type="date" class="form-control" placeholder="Начало" required="required"></td>
                 <td><input th:field="*{endDate}" type="date" class="form-control" placeholder="Конец" required="required"></td>
+                <td>
+                    <select th:field="*{isActive}" class="form-select">
+                        <option value="1">Да</option>
+                        <option value="0">Нет</option>
+                    </select>
+                </td>
                 </tbody>
             </table>
             <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
         </form>
         </div>
 
-        <table class="table app-table-hover text-center">
+        <table  id="datatablesSimple" class="table app-table-hover text-center">
             <thead>
             <tr>
                 <th>Номер Договора</th>
@@ -78,6 +90,7 @@
                 <th>Скидка</th>
                 <th>Начало</th>
                 <th>Конец</th>
+                <th>Активный</th>
                 <th>Действия</th>
             </tr>
             </thead>
@@ -89,6 +102,7 @@
                 <td th:text="${item.discount}">У дверей</td>
                 <td th:text="${item.startDate}">1</td>
                 <td th:text="${item.endDate}">1</td>
+                <td th:text="${item.isActive} ? 'Да' : 'Нет'"></td>
                 <td class="d-flex justify-content-center">
                     <form th:action="'/admin/contract/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
                     <form th:action="'/admin/contract/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
@@ -100,6 +114,8 @@
     </div>
 
 </div>
+
+<div th:insert="~{fragments/navbar :: footer}"></div>
 
 </body>
 </html>
