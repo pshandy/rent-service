@@ -11,6 +11,14 @@
 
     <div class="app-wrapper mt-4">
 
+        <div class="alert alert-danger mt-3 text-center" th:if="${message}" th:utext="${message}">
+            Не удалось добавить
+        </div>
+
+        <div class="alert alert-success mt-3 text-center" th:if="${smessage}" th:utext="${smessage}">
+            Удалось добавить
+        </div>
+
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="d-flex flex-column align-content-end">
@@ -40,9 +48,9 @@
 
                                 <select required th:field="*{zone}" class="form-select mb-3">
                                     <option value="" selected>Зона</option>
-                                    <option value="1">Фудкорд</option>
-                                    <option value="2">Склад</option>
-                                    <option value="3">Остров</option>
+                                    <option value="Фудкорд">Фудкорд</option>
+                                    <option value="Склад">Склад</option>
+                                    <option value="Остров">Остров</option>
                                 </select>
 
                                 <select required th:field="*{internetPresent}" class="form-select mb-3">
@@ -63,7 +71,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </body>

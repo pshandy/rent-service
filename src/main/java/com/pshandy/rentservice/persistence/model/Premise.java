@@ -36,4 +36,9 @@ public class Premise {
     @OneToMany(mappedBy = "premise")
     private Set<Contract> contracts;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "premise")
+    private Set<Request> requests;
+
+
 }

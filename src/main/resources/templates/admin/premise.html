@@ -17,12 +17,12 @@
             <table class="table app-table-hover text-center">
                 <thead>
                 <tr>
-                    <th>Состояние Сдачи</th>
-                    <th>Стоимость</th>
-                    <th>Площадь</th>
-                    <th>Зона</th>
-                    <th>Интернет</th>
-                    <th>Описание</th>
+                    <th class="text-center">Состояние Сдачи</th>
+                    <th class="text-center">Стоимость</th>
+                    <th class="text-center">Площадь</th>
+                    <th class="text-center">Зона</th>
+                    <th class="text-center">Интернет</th>
+                    <th class="text-center">Описание</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,9 +36,9 @@
                 <td><input th:field="*{area}" class="form-control" placeholder="Площадь" required="required"></td>
                 <td>
                     <select th:field="*{zone}" class="form-select">
-                        <option value="1">Фудкорд</option>
-                        <option value="2">Склад</option>
-                        <option value="3">Остров</option>
+                        <option value="Фудкорд">Фудкорд</option>
+                        <option value="Склад">Склад</option>
+                        <option value="Остров">Остров</option>
                     </select>
                 </td>
                 <td>
@@ -88,9 +88,9 @@
                     <td><input th:field="*{area}" class="form-control" placeholder="Площадь" required="required"></td>
                     <td>
                         <select th:field="*{zone}" class="form-select">
-                            <option value="1">Фудкорд</option>
-                            <option value="2">Склад</option>
-                            <option value="3">Остров</option>
+                            <option value="Фудкорд">Фудкорд</option>
+                            <option value="Склад">Склад</option>
+                            <option value="Остров">Остров</option>
                         </select>
                     </td>
                     <td>

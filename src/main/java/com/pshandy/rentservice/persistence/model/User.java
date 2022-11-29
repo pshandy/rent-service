@@ -39,7 +39,11 @@ public class User {
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Wish> additionalContracts;
+    private Set<AdditionalContract> additionalContracts;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Request> requests;
 
     @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     @JoinTable(
