@@ -59,16 +59,16 @@
             <thead>
             <tr>
                 <th class="text-center">Id записи</th>
-                <th class="text-center">Id юзера</th>
                 <th class="text-center">Id помещения</th>
+                <th class="text-center">Id юзера</th>
                 <th class="text-center">Действия</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="item : ${requests}">
                 <td th:text="${item.id}">1</td>
-                <td th:text="${item.user.id}">1</td>
                 <td th:text="${item.premise.id}">1</td>
+                <td th:text="${item.user.id}">1</td>
                 <td class="d-flex justify-content-center">
                     <form th:action="'/admin/request/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
                     <form th:action="'/admin/request/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
