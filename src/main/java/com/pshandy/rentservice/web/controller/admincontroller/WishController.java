@@ -66,7 +66,7 @@ public class WishController {
         ModelAndView mav = new ModelAndView("/admin/wish");
         mav.addObject("edit", wishRepository.findById(id).get());
         mav.addObject("wish", new Wish());
-        mav.addObject("wishs", wishRepository.findAll());
+        mav.addObject("wishes", wishRepository.findAll());
         return mav;
     }
 
