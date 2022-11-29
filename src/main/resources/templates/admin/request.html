@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Комнаты</title>
+    <div th:insert="~{fragments/navbar :: head}"></div>
+</head>
+<body class="app">
+
+<div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+<div class="app-wrapper">
+
+    <div class="card mb-4">
+
+        <form action="/admin/request" th:object="${request}" method="POST">
+        <table class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th>Id Юзера</th>
+                <th>Id Помещения</th>
+            </tr>
+            </thead>
+            <tbody>
+            <td><input th:field="*{premise.id}" class="form-control" placeholder="ID помещения" required="required"></td>
+            <td><input th:field="*{user.id}" class="form-control" placeholder="ID пользователя" required="required"></td>
+            </tbody>
+        </table>
+        <button class="btn app-btn-primary w-100 theme-btn mx-auto" type="submit">Добавить</button>
+        </form>
+
+        <div class="alert alert-danger mt-3 text-center" th:if="${message}" th:utext="${message}">
+            Не удалось добавить
+        </div>
+
+        <div class="alert alert-success mt-3 text-center" th:if="${smessage}" th:utext="${smessage}">
+            Удалось добавить
+        </div>
+
+        <div th:if="${edit}">
+            <form action="/admin/request" th:object="${edit}" th:method="PATCH">
+                <input type="hidden" th:field="*{id}" th:value="${edit.id}">
+                <table class="table app-table-hover text-center">
+                    <thead>
+                    <tr>
+                        <th>Id Юзера</th>
+                        <th>Id Помещения</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td><input th:field="*{premise.id}" class="form-control" placeholder="ID помещения" required="required"></td>
+                    <td><input th:field="*{user.id}" class="form-control" placeholder="ID пользователя" required="required"></td>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary w-100 theme-btn mx-auto" type="submit">Изменить</button>
+            </form>
+        </div>
+
+        <table   id="datatablesSimple" class="table app-table-hover text-center">
+            <thead>
+            <tr>
+                <th class="text-center">Id записи</th>
+                <th class="text-center">Id юзера</th>
+                <th class="text-center">Id помещения</th>
+                <th class="text-center">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${requests}">
+                <td th:text="${item.id}">1</td>
+                <td th:text="${item.user.id}">1</td>
+                <td th:text="${item.premise.id}">1</td>
+                <td class="d-flex justify-content-center">
+                    <form th:action="'/admin/request/' + ${item.id}" th:method="GET"><button type="submit" class="btn">✎</button></form>
+                    <form th:action="'/admin/request/' + ${item.id}" th:method="DELETE"><button type="submit" class="btn">🗑</button></form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div th:insert="~{fragments/navbar :: footer}"></div>
+</body>
+</html>
