@@ -27,14 +27,14 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/registration")
+    @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
         return "registration";
     }
 
-    @PostMapping("/user/registration")
+    @PostMapping("/registration")
     public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid final UserDto userDto,
                                             BindingResult result) {
 
