@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Помещения</title>
-    <meta charset="UTF-8">
-    <script defer th:src="@{/assets/plugins/fontawesome/js/all.min.js}"></script>
-    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/portal.css}">
+    <div th:insert="~{fragments/navbar :: head}"></div>
 </head>
 <body class="app">
 
@@ -110,7 +108,7 @@
             </form>
         </div>
 
-        <table class="table app-table-hover text-center">
+        <table   id="datatablesSimple" class="table app-table-hover text-center">
             <thead>
             <tr>
                 <th>Id</th>
@@ -143,6 +141,6 @@
     </div>
 
 </div>
-
+<div th:insert="~{fragments/navbar :: footer}"></div>
 </body>
 </html>

@@ -1,6 +1,10 @@
 INSERT INTO role (name) VALUES ('ROLE_USER');
+INSERT INTO role (name) VALUES ('ROLE_ADMIN');
 INSERT INTO users (email, first_name, last_name, middle_name, password, phone_number) VALUES ('admin', 'a', 'b', 'c', '$2a$11$PhCtZ53fprhL0ircqxvAiOp2BA0AV3wYME0z0YsL7CWFqReb.qex6', '+79540415079')
+INSERT INTO users (email, first_name, last_name, middle_name, password, phone_number) VALUES ('user', 'a', 'b', 'c', '$2a$11$muRIk4wUxP/clptMdEg5kuEdg/6pRW7FxbI74sN2yqft7ARpZjgb6', '+79540415079')
 INSERT INTO user_role VALUES (1, 1)
+INSERT INTO user_role VALUES (2, 1)
+INSERT INTO user_role VALUES (1, 2)
 
 INSERT INTO Premise(Id,price,area,zone,is_occupied,internet_present) Values(1,5000,250,'Фудкорд',false,true);
 INSERT INTO Premise(Id,price,area,zone,is_occupied,internet_present) Values(2,3000,50,'Остров',false,true);

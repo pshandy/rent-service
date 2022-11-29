@@ -21,7 +21,8 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/homepage");
 
         http.authorizeHttpRequests()
-                .requestMatchers("/user/wish*", "/moderator/wish*", "/moderator/wish/*", "/user/profile*").hasRole("USER")
+                .requestMatchers("/user/**").hasRole("USER")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers(
                         "/login*",
                         "/logout*",

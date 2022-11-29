@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Фильтр</title>
+  <div th:insert="~{fragments/navbar :: head}"></div>
+</head>
+<body class="app">
+
+<div th:insert="~{fragments/navbar :: navbar}"> </div>
+
+<div class="app-wrapper mt-4">
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+      <div class="container-xl">
+        <div class="row g-4 mb-4">
+          <!--                    -----------------------------------   -->
+          <div th:each="item : ${premises}" class="col-12 col-lg-6">
+            <div class="app-card app-card-chart h-100 shadow-sm">
+              <div class="row">
+
+                <div class="col-sm">
+                  <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Помещение 1</h4>
+                  </div>
+                  <div class="app-card-body px-4">
+                    <div class="mb-2"><strong>Стоимость: </strong><span th:text="${item.price}"></span></div>
+                    <div class="mb-2"><strong>Площадь: </strong><span th:text="${item.area}"></span></div>
+                    <div class="mb-2"><strong>Зона: </strong><span th:text="${item.zone}"></span></div>
+                    <div class="mb-2"><strong>Интернет: </strong><span th:text="${item.internetPresent} ? 'Есть' : 'Отсутствует'"></span></div>
+                    <div class="row justify-content-between mb-4">
+                      <div class="col-auto">
+                        <a class="btn app-btn-primary" href="#">Подробнее</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="app-card-header p-3 border-0">
+                    <h4 class="app-card-title">Описание</h4>
+                  </div>
+                  <div class="pe-4 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut facilisis magna, tincidunt consequat turpis. Vivamus sollicitudin massa non cursus sagittis. Sed vel felis pharetra, egestas felis quis, semper erat.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--                    -----------------------------------   -->
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>
+</html>
