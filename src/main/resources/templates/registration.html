@@ -19,7 +19,7 @@
           Не удалось войти
         </div>
         <div class="auth-form-container text-start mx-auto">
-          <form action="/user/registration" th:object="${user}" method="POST">
+          <form action="/registration" th:object="${user}" method="POST">
             <div class="mb-3">
               <input th:field="*{firstName}" class="form-control" placeholder="Имя" required="required">
             </div>
